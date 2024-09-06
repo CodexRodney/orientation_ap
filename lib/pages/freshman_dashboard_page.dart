@@ -40,15 +40,22 @@ class FreshmanDashboardPage extends StatelessWidget {
               ),
               Obx(
                 () => activitySessionController.ongoingActivity.value != null
-                    ? OngoingActivity(
-                        activityName: activitySessionController
-                            .ongoingActivity.value!.title,
-                        location: activitySessionController
-                            .ongoingActivity.value!.location,
-                        startTime: activitySessionController
-                            .ongoingActivity.value!.startTime,
-                        endTime: activitySessionController
-                            .ongoingActivity.value!.endTime,
+                    ? GestureDetector(
+                        onDoubleTap: () {
+                          // update ongoing and upcoming activity
+                          activitySessionController
+                              .updateOngoingUpcomingActivities();
+                        },
+                        child: OngoingActivity(
+                          activityName: activitySessionController
+                              .ongoingActivity.value!.title,
+                          location: activitySessionController
+                              .ongoingActivity.value!.location,
+                          startTime: activitySessionController
+                              .ongoingActivity.value!.startTime,
+                          endTime: activitySessionController
+                              .ongoingActivity.value!.endTime,
+                        ),
                       )
                     // TODO check on this
                     : Center(

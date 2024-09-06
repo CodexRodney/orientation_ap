@@ -43,15 +43,21 @@ class ParentDashboardPage extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Obx(
                 () => activitySessionController.ongoingActivity.value != null
-                    ? OngoingActivity(
-                        activityName: activitySessionController
-                            .ongoingActivity.value!.title,
-                        location: activitySessionController
-                            .ongoingActivity.value!.location,
-                        startTime: activitySessionController
-                            .ongoingActivity.value!.startTime,
-                        endTime: activitySessionController
-                            .ongoingActivity.value!.endTime,
+                    ? GestureDetector(
+                        onDoubleTap: () {
+                          activitySessionController
+                              .updateOngoingUpcomingActivities();
+                        },
+                        child: OngoingActivity(
+                          activityName: activitySessionController
+                              .ongoingActivity.value!.title,
+                          location: activitySessionController
+                              .ongoingActivity.value!.location,
+                          startTime: activitySessionController
+                              .ongoingActivity.value!.startTime,
+                          endTime: activitySessionController
+                              .ongoingActivity.value!.endTime,
+                        ),
                       )
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.center,

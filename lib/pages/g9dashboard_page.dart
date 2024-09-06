@@ -246,19 +246,25 @@ class G9DashboardPage extends StatelessWidget {
             ),
             Obx(
               () => activitySessionController.upcomingActivity.value != null
-                  ? UpcomingActivity(
-                      activityName: activitySessionController
-                          .upcomingActivity.value!.title,
-                      eventDescription: activitySessionController
-                          .upcomingActivity.value!.description,
-                      isSession: activitySessionController
-                          .upcomingActivity.value!.isSession,
-                      location: activitySessionController
-                          .upcomingActivity.value!.location,
-                      startTime: activitySessionController
-                          .upcomingActivity.value!.startTime,
-                      endTime: activitySessionController
-                          .upcomingActivity.value!.endTime,
+                  ? GestureDetector(
+                      onDoubleTap: () {
+                        activitySessionController
+                            .updateOngoingUpcomingActivities();
+                      },
+                      child: UpcomingActivity(
+                        activityName: activitySessionController
+                            .upcomingActivity.value!.title,
+                        eventDescription: activitySessionController
+                            .upcomingActivity.value!.description,
+                        isSession: activitySessionController
+                            .upcomingActivity.value!.isSession,
+                        location: activitySessionController
+                            .upcomingActivity.value!.location,
+                        startTime: activitySessionController
+                            .upcomingActivity.value!.startTime,
+                        endTime: activitySessionController
+                            .upcomingActivity.value!.endTime,
+                      ),
                     )
                   : SizedBox(
                       height: MediaQuery.of(context).size.height * 0.15,
